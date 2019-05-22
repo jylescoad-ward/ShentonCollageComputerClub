@@ -9,30 +9,36 @@ body {
 }
 .members-count {
     position: absolute;
-    top:20px;
+    top:65px;
     right:20px;
-    height: 50px;
+    height: 20px;
     width: 250px;
-
-    border: 1px black solid;
+    border: 2px lightgray solid;
+    padding: 5px;
+    background: #fff;
 }
 .members-list {
     position: absolute;
-    top: 90px;
+    top: 95px;
     right: 20px;
     height: 300px;
     width:250px;
-    border: 1px black solid;
+    border: 2px lightgray solid;
+    padding: 5px;
+    background: #fff;
 }
 .messages {
-    border: 1px solid #e4e4e4;
     padding: 15px;
     margin-bottom: 15px;
-    width: calc(100% - 350px);
+    width: calc(100% - 340px);
 }
 .messages {
     flex-shrink: 1;
     overflow: auto;
+    position: relative;
+    top: 80px;
+    background: #fff;
+    border: 2px lightgray solid;
 }
 .message {
     padding: 5px 0;
@@ -48,14 +54,42 @@ body {
     display: flex;
     flex-shrink: 0;
     width: calc(100% - 310px);
+    position: relative;
+    top: 90px;
+    background: #fff;
+    border: 2px lightgray solid;
 }
 .message-form__input {
     flex-grow: 1;
-    border: 1px solid #dfdfdf;
     padding: 10px 15px;
     font-size: 16px;
 
 }
 .message-form__button {
-    margin: 10px;
+    height: 42px;
+    width: 40px;
+    text-align: center;
+    padding-right:35px;
+}
+.connection-status{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    border: 1px black solid;
+    padding: 5px;
+    background: #fff;
+}
+#status{
+    font-weight: bold;
+}
+.title{
+    font-size: 18px;
+    position: absolute;
+    top:20px;
+    left: 300px;
+}
+#loadinggif{
+    position: absolute;
+    top:20px;
+    left: 240px;
 }

@@ -1,12 +1,20 @@
-// PS! Replace this with your own channel ID
-// If you use this channel ID your app will stop working in the future
-//Client ID must be 16 characters
-//I suggest to use http://PasswordGenerator.net
-const CLIENT_ID = '4cNswoNqM2wVFHPg';
+const CLIENT_ID = 'JPnR9XRRKyd7G0cj';
+
+function sleep(miliseconds) {
+    var currentTime = new Date().getTime();
+
+    while (currentTime + miliseconds >= new Date().getTime()) {
+    }
+}
+
+var randomNameee = getRandomName();
+if (randomNameee.length > 1){
+    randomNameee = getRandomName();
+}
 
 const drone = new ScaleDrone(CLIENT_ID, {
     data: { // Will be sent out as clientData via events
-        name: getRandomName(),
+        name: randomNameee,
         color: getRandomColor(),
     },
 });
@@ -16,15 +24,26 @@ let members = [];
 drone.on('open', error => {
     if (error) {
         return console.error(error);
+        document.getElementById("status").innterHTML = "An error has occured, please check console log";
+        document.getElementById("status").style.color = "#DC0000";
     }
     console.log('Successfully connected to Scaledrone');
+    document.getElementById("status").innerHTML = "Connected to Server!";
+    document.getElementById("status").style.color = "#89FF89";
+    document.getElementById("loadinggif").style.opacity = "0";
+    document.getElementById("loadinggif").style.transition = "opacity 0.5s linear";
 
     const room = drone.subscribe('observable-room');
     room.on('open', error => {
         if (error) {
             return console.error(error);
+            document.getElementById("status").innterHTML = "An error has occured, please check console log";
+            document.getElementById("status").style.color = "#DC0000";
         }
         console.log('Successfully joined room');
+        document.getElementById("messages").innerHTML = "Welcome to the Shenton College Chat Room!<br>Enjoy your stay!<br><br>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br><br>";
+            document.getElementById("status").innerHTML = "Connected";
+            document.getElementById("status").style.color = "#00B300";
     });
 
     room.on('members', m => {
@@ -54,6 +73,7 @@ drone.on('open', error => {
 
 drone.on('close', event => {
     console.log('Connection was closed', event);
+    document.getElementById("status").innterHTML = "Disconnected from Server.";
 });
 
 drone.on('error', error => {
@@ -61,8 +81,8 @@ drone.on('error', error => {
 });
 
 function getRandomName() {
-    const adjs = ["autumn", "hidden", "bitter", "misty", "silent", "empty", "dry", "dark", "summer", "icy", "delicate", "quiet", "white", "cool", "spring", "winter", "patient", "twilight", "dawn", "crimson", "wispy", "weathered", "blue", "billowing", "broken", "cold", "damp", "falling", "frosty", "green", "long", "late", "lingering", "bold", "little", "morning", "muddy", "old", "red", "rough", "still", "small", "sparkling", "throbbing", "shy", "wandering", "withered", "wild", "black", "young", "holy", "solitary", "fragrant", "aged", "snowy", "proud", "floral", "restless", "divine", "polished", "ancient", "purple", "lively", "nameless"];
-    const nouns = ["waterfall", "river", "breeze", "moon", "rain", "wind", "sea", "morning", "snow", "lake", "sunset", "pine", "shadow", "leaf", "dawn", "glitter", "forest", "hill", "cloud", "meadow", "sun", "glade", "bird", "brook", "butterfly", "bush", "dew", "dust", "field", "fire", "flower", "firefly", "feather", "grass", "haze", "mountain", "night", "pond", "darkness", "snowflake", "silence", "sound", "sky", "shape", "surf", "thunder", "violet", "water", "wildflower", "wave", "water", "resonance", "sun", "wood", "dream", "cherry", "tree", "fog", "frost", "voice", "paper", "frog", "smoke", "star"];
+    const adjs = ["pepsi", "autumn", "hidden", "bitter", "misty", "silent", "empty", "dry", "dark", "summer", "icy", "delicate", "quiet", "white", "cool", "spring", "winter", "patient", "twilight", "dawn", "crimson", "wispy", "weathered", "blue", "billowing", "broken", "cold", "damp", "falling", "frosty", "green", "long", "late", "lingering", "bold", "little", "morning", "muddy", "old", "red", "rough", "still", "small", "sparkling", "throbbing", "shy", "wandering", "withered", "wild", "black", "young", "holy", "solitary", "fragrant", "aged", "snowy", "proud", "floral", "restless", "divine", "polished", "ancient", "purple", "lively", "nameless"];
+    const nouns = ["man", "waterfall", "river", "breeze", "moon", "rain", "wind", "sea", "morning", "snow", "lake", "sunset", "pine", "shadow", "leaf", "dawn", "glitter", "forest", "hill", "cloud", "meadow", "sun", "glade", "bird", "brook", "butterfly", "bush", "dew", "dust", "field", "fire", "flower", "firefly", "feather", "grass", "haze", "mountain", "night", "pond", "darkness", "snowflake", "silence", "sound", "sky", "shape", "surf", "thunder", "violet", "water", "wildflower", "wave", "water", "resonance", "sun", "wood", "dream", "cherry", "tree", "fog", "frost", "voice", "paper", "frog", "smoke", "star"];
     return (
         adjs[Math.floor(Math.random() * adjs.length)] +
         "_" +
@@ -108,8 +128,9 @@ function createMemberElement(member) {
 }
 
 function updateMembersDOM() {
-    DOM.membersCount.innerText = `${members.length} users in room:`;
-    DOM.membersList.innerHTML = '';
+    DOM.membersCount.innerText = `${members.length} user connected`;
+    DOM.membersCount.style.fontWeight = "bold";
+    DOM.membersList.innerHTML = '<strong>Users:</strong><br>';
     members.forEach(member =>
         DOM.membersList.appendChild(createMemberElement(member))
     );

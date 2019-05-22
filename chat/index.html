@@ -2,7 +2,6 @@
 <html>
     <head>
         <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
-        <!--<script type='text/javascript' src='./scaledrone.min.js'></script>-->
         <title>
             Shenton College Chat Room
         </title>
@@ -11,13 +10,21 @@
         <link href="style.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
+        <div class="title">Shenton College Computer Club Chat Room</div>
+        <img src="loading.gif" height="48" width="48" id="loadinggif">
         <div class="members-count">Loading Member Count</div>
         <div class="members-list">Loading Member List</div>
-        <div class="messages">Welcome to the Shenton College Chat Room!<br>Enjoy your stay!<br><br>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br><br></div>
+        <div class="messages" id="messages"><br><br></div>
         <form class="message-form" onsubmit="return false;">
             <input class="message-form__input" placeholder="Type a message.." type="text"/>
             <input class="message-form__button" value="Send" type="submit"/>
         </form>
+        <div class="connection-status">
+            Channel Connection Status: <br>
+            <div id="status">
+                Establishing Connection
+            </div>
+        </div>
         <script src="./chat.js"></script>
     </body>
 </html>
