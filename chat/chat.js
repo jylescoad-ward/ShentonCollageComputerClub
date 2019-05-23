@@ -1,4 +1,7 @@
 const CLIENT_ID = 'JPnR9XRRKyd7G0cj';
+const version = "v1.0";
+
+document.getElementById("version").innerText = version;
 
 function sleep(miliseconds) {
     var currentTime = new Date().getTime();
@@ -7,14 +10,14 @@ function sleep(miliseconds) {
     }
 }
 
-var randomNameee = getRandomName();
-if (randomNameee.length > 1){
-    randomNameee = getRandomName();
+var randomNameChecker = getRandomName();
+if (randomNameChecker.length > 1){
+    randomNameChecker = getRandomName();
 }
 
 const drone = new ScaleDrone(CLIENT_ID, {
     data: { // Will be sent out as clientData via events
-        name: randomNameee,
+        name: randomNameChecker,
         color: getRandomColor(),
     },
 });
