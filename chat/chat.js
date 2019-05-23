@@ -1,5 +1,5 @@
 const CLIENT_ID = 'JPnR9XRRKyd7G0cj';
-const version = "v1.0";
+const version = "v1.0.3";
 
 document.getElementById("version").innerHTML = version;
 
