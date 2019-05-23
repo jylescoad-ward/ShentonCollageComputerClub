@@ -1,7 +1,7 @@
 const CLIENT_ID = 'JPnR9XRRKyd7G0cj';
 const version = "v1.0";
 
-document.getElementById("version").innerText = version;
+document.getElementById("version").innerHTML = version;
 
 function sleep(miliseconds) {
     var currentTime = new Date().getTime();
@@ -13,6 +13,7 @@ function sleep(miliseconds) {
 var randomNameChecker = getRandomName();
 if (randomNameChecker.length > 1){
     randomNameChecker = getRandomName();
+    console.log("Name invalid, generating new name.")
 }
 
 const drone = new ScaleDrone(CLIENT_ID, {
