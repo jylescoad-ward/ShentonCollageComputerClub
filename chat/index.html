@@ -10,10 +10,16 @@
         <link href="style.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <div class="title">Shenton College Computer Club Chat Room</div>
-        <img src="loading.gif" height="48" width="48" id="loadinggif">
-        <div class="members-count">Loading Member Count</div>
-        <div class="members-list">Loading Member List</div>
+        <div class="title">
+            Shenton College Computer Club Chat Room
+        </div>
+        <img src="loading.gif" height="40" width="40" id="loadinggif">
+        <div class="members-count">
+            Loading Member Count
+        </div>
+        <div class="members-list">
+            Loading Member List
+        </div>
         <div class="messages" id="messages"><br><br></div>
         <form class="message-form" onsubmit="return false;">
             <input class="message-form__input" placeholder="Type a message.." type="text"/>
@@ -26,6 +32,9 @@
             </div>
         </div>
         <p class="version" id="version"></p>
+        <div class="reconnect">
+            <a href="#" onclick="location.reload()">Reconnect</a>
+        </div>
         <script src="./chat.js"></script>
     </body>
 </html>
