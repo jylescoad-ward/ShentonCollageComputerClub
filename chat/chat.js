@@ -1,7 +1,11 @@
 const CLIENT_ID = 'JPnR9XRRKyd7G0cj';
-const version = "v1.0.3";
+const version = "v1.1.1";
 
 document.getElementById("version").innerHTML = version;
+
+var today = new Date();
+var time = `</strong>Current Time: (hour:min)<strong><br>` + today.getHours() + ":" + today.getMinutes();
+
 
 function sleep(miliseconds) {
     var currentTime = new Date().getTime();
@@ -11,9 +15,8 @@ function sleep(miliseconds) {
 }
 
 var randomNameChecker = getRandomName();
-if (randomNameChecker.length > 1){
+if (randomNameChecker.length < 1){
     randomNameChecker = getRandomName();
-    console.log("Name invalid, generating new name.")
 }
 
 const drone = new ScaleDrone(CLIENT_ID, {
@@ -69,6 +72,7 @@ drone.on('open', error => {
     room.on('data', (text, member) => {
         if (member) {
             addMessageToListDOM(text, member);
+            console.log('Message Recieved');
         } else {
             // Message is from server
         }
@@ -87,11 +91,20 @@ drone.on('error', error => {
 function getRandomName() {
     const adjs = ["pepsi", "autumn", "hidden", "bitter", "misty", "silent", "empty", "dry", "dark", "summer", "icy", "delicate", "quiet", "white", "cool", "spring", "winter", "patient", "twilight", "dawn", "crimson", "wispy", "weathered", "blue", "billowing", "broken", "cold", "damp", "falling", "frosty", "green", "long", "late", "lingering", "bold", "little", "morning", "muddy", "old", "red", "rough", "still", "small", "sparkling", "throbbing", "shy", "wandering", "withered", "wild", "black", "young", "holy", "solitary", "fragrant", "aged", "snowy", "proud", "floral", "restless", "divine", "polished", "ancient", "purple", "lively", "nameless"];
     const nouns = ["man", "waterfall", "river", "breeze", "moon", "rain", "wind", "sea", "morning", "snow", "lake", "sunset", "pine", "shadow", "leaf", "dawn", "glitter", "forest", "hill", "cloud", "meadow", "sun", "glade", "bird", "brook", "butterfly", "bush", "dew", "dust", "field", "fire", "flower", "firefly", "feather", "grass", "haze", "mountain", "night", "pond", "darkness", "snowflake", "silence", "sound", "sky", "shape", "surf", "thunder", "violet", "water", "wildflower", "wave", "water", "resonance", "sun", "wood", "dream", "cherry", "tree", "fog", "frost", "voice", "paper", "frog", "smoke", "star"];
-    return (
-        adjs[Math.floor(Math.random() * adjs.length)] +
-        "_" +
-        nouns[Math.floor(Math.random() * nouns.length)]
-    );
+    let randomGenName = adjs[Math.floor(Math.random() * adjs.length)] + "_" + nouns[Math.floor(Math.random() * nouns.length)]
+    function generateRandomName() {
+        return (
+            adjs[Math.floor(Math.random() * adjs.length)] + "_" + nouns[Math.floor(Math.random() * nouns.length)]
+        );
+        console.log("Name invalid, generated new name.");
+    }
+    if (randomGenName.length != undefined || null){
+        return (
+            randomGenName
+        );
+    } else {
+        generateRandomName();
+    }
 }
 
 function getRandomColor() {
